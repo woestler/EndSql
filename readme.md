@@ -249,7 +249,7 @@ $select = $db->select();
 $subSelect = $db->select();
 $subSelect->from("products")->columns(array("userId"))
           ->where()->greaterThan(array("qty"=>2));
-$select->where()->in(array("id",$subSelect));
+$select->where()->in(array("id"=>$subSelect));
 
 // Gives SELECT * FROM users WHERE id IN (SELECT userId FROM products WHERE qty > 2)
 ```
@@ -260,7 +260,7 @@ $select = $db->select();
 $subSelect = $db->select();
 $subSelect->from("products")->columns(array("userId"))
           ->where()->equal(array("qty"=>2));
-$select->where()->equal(array("id",$subSelect));
+$select->where()->equal(array("id"=>$subSelect));
 
 // Gives SELECT * FROM users WHERE id = (SELECT userId FROM products WHERE qty = 2)
 ```
