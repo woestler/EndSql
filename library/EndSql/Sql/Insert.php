@@ -62,7 +62,7 @@ class EndSql_Sql_Insert extends EndSql_Sql_AbstractSql {
             if(is_numeric($key)) {
                 $this->values[] = $value;
             } elseif(is_string($key)) {
-                $this->columns[] = $key
+                $this->columns[] = $key;
             }
         }
 
