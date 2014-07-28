@@ -45,6 +45,7 @@ class EndSql_Sql_Delete extends EndSql_Sql_AbstractSql {
 
     public function from($table) {
     	$this->table = $table;
+        return $this;
     }
 
     public function getSql() {
@@ -56,5 +57,6 @@ class EndSql_Sql_Delete extends EndSql_Sql_AbstractSql {
     public function clear() {
     	$this->table = null;
     	$this->where->clear();
+        return $this;
     }
 } 

@@ -118,6 +118,7 @@ class EndSql_Sql_Insert extends EndSql_Sql_AbstractSql {
         $this->values = null;
         $this->columns = null;
         $this->where()->clear();
+        return $this;
     }
 } 
 

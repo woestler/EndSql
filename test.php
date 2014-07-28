@@ -21,9 +21,8 @@ $data = array(NULL,'TEST_Y');
  // echo $subselect->getSql(); echo "\n";
 $data = array("id" => 3,
 	          "admin" => "woestler");
-echo $insert->into("context")->values($data)->getSql();
-
-
+$delete->from("context")->where()->greaterThan(array("id"=>20));
+echo $delete->exec();
 
 // echo $select->getSql();
 // print_r($select->exec());

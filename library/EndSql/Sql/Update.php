@@ -73,5 +73,6 @@ class EndSql_Sql_Update extends EndSql_Sql_AbstractSql {
         $this->where()->clear();
         $this->table = null;
         $this->values = null;
+        return $this;
     }
 } 

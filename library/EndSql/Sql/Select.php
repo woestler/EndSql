@@ -364,5 +364,6 @@ class EndSql_Sql_Select extends EndSql_Sql_AbstractSql {
         $this->combine = null;
         $this->offset = null;
         $this->alias = null;
+        return $this;
     }
 }
