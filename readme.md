@@ -9,7 +9,7 @@ EndSql
 **[Generic Query](#generic-query-method)**  
 **[Where Conditions](#where-method)**  
 **[Order Conditions](#ordering-method)**  
-**[Group Conditions](#grouping-method)** 
+**[Group Conditions](#grouping-method)**  
 **[Limit Conditions](#limit-method)**  
 **[Joining Tables](#join-method)**  
 **[Subqueries](#subqueries)**  
