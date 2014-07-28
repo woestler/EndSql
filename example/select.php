@@ -7,7 +7,7 @@ $select = $db->select();
 
 $select->from("context"); 
 
-// $data = $select->exec(); //execute : select * from context
+$data = $select->exec(); //execute : select * from context
 
 $data = $select->columns(array("id","caption"));  // select id from context;
 
