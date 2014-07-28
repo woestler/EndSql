@@ -7,11 +7,10 @@ EndSql
 **[Select Query](#select-query)**  
 **[Delete Query](#delete-query)**  
 **[Generic Query](#generic-query-method)**  
-**[Raw Query](#raw-query-method)**  
 **[Where Conditions](#where-method)**  
 **[Order Conditions](#ordering-method)**  
 **[Group Conditions](#grouping-method)** 
-**[Limit Conditions](#limit-method) 
+**[Limit Conditions](#limit-method)**
 **[Joining Tables](#join-method)**  
 **[Subqueries](#subqueries)**  
 **[Helpers](#helpers)**  
@@ -116,17 +115,13 @@ $delete->exec();
 ``` 
 
 ### Generic Query Method
-By default rawQuery() will filter out special characters so if you getting problems with it
-you might try to disable filtering function. In this case make sure that all external variables are passed to the query via bind variables
+
 
 ```php
-// filtering enabled
-$users = $db->rawQuery('SELECT * from users where customerId=?', Array (10));
-// filtering disabled
-//$users = $db->rawQuery('SELECT * from users where id >= ?', Array (10), false);
-foreach ($users as $user) {
-    print_r ($user);
-}
+
+$db = EndSql::getInstance();
+$data = $db->query("select * from user");
+
 ```
 
 
