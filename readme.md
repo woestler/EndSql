@@ -10,7 +10,7 @@ EndSql
 **[Where Conditions](#where-method)**  
 **[Order Conditions](#ordering-method)**  
 **[Group Conditions](#grouping-method)** 
-**[Limit Conditions](#limit-method)**
+**[Limit Conditions](#limit-method)**  
 **[Joining Tables](#join-method)**  
 **[Subqueries](#subqueries)**  
 **[Helpers](#helpers)**  
