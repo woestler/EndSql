@@ -19,10 +19,20 @@ $data = array(NULL,'TEST_Y');
 
 
  // echo $subselect->getSql(); echo "\n";
-$data = array("id" => 3,
-	          "admin" => "woestler");
-$delete->from("context")->where()->greaterThan(array("id"=>20));
-echo $delete->exec();
+$select->from("context");
+$subselect = $db->select("tumblr")->columns(array("type_id"));
+$subselect->where()->equal(array('type_id' => 333 ));
+$subselect->limit(1);
+$select->where()->equal(array("type_id" => $subselect));
+$select->limit(2);
+$select->order(array("id DESC","caption DESC"));  
+
+echo $select->getSql();
+//SELECT * FROM context WHERE ( type_id = (SELECT type_id FROM tumblr WHERE ( type_id = 333) LIMIT 1)) ORDER BY id DESC,caption DESC LIMIT 2
+
+print_r($select->exec());
+print_r($select->getLastError());
+// Gives: SELECT * FROM users LIMIT 1;
 
 // echo $select->getSql();
 // print_r($select->exec());

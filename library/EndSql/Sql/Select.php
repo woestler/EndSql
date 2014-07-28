@@ -316,7 +316,7 @@ class EndSql_Sql_Select extends EndSql_Sql_AbstractSql {
 
     public function processGroup() {
         if(!$this->group) return;
-        $sql = " GROUP BY $this->group";
+        $sql = "GROUP BY $this->group";
         return $sql;
     }
 
