@@ -19,19 +19,11 @@ $data = array(NULL,'TEST_Y');
 
 
  // echo $subselect->getSql(); echo "\n";
-$data = array(NULL,333,'just don\'t it',"www.baidu.com/new.jpg","tags1,tags2",0,3,1,1,0);
-// $insert->into("context")->values($data)->exec();
+$data = array("id" => 3,
+	          "admin" => "woestler");
+echo $insert->into("context")->values($data)->getSql();
 
-$select->from("context");
 
-$where = $select->where();
-
-$where->greater(array("tumblr"=>0));
-
-$where->between("id",array(4,14),EndSql::SQL_OR);
-
-echo $select->getSql();
-print_r($select->exec());
 
 // echo $select->getSql();
 // print_r($select->exec());

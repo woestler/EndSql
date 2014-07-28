@@ -53,19 +53,16 @@ class EndSql_Sql_Insert extends EndSql_Sql_AbstractSql {
 
 
 	public function values(array $values) {
-		if(is_array($values))
-            $this->values = $values;
-        else
-           throw new Exception("insert values must be array", 1);      
-        return $this;
+
         foreach ($values as $key => $value) {
             if(is_numeric($key)) {
                 $this->values[] = $value;
             } elseif(is_string($key)) {
                 $this->columns[] = $key;
+                $this->values[]  = $value;
             }
         }
-
+        return $this;
 	}
 
 	public function exec() {
@@ -122,9 +119,6 @@ class EndSql_Sql_Insert extends EndSql_Sql_AbstractSql {
         $this->columns = null;
         $this->where()->clear();
     }
-
-
-	
 } 
 
 // insert into type 
