@@ -1,4 +1,32 @@
-This is a beta of EndSql version 1 series.
+<?php
+include '../Autoload.php';
+
+$db = EndSql::getInstance();
+
+$select = $db->select();
+
+$select->from("context"); 
+
+// $data = $select->exec(); //execute : select * from context
+
+$data = $select->columns(array("id","caption"));  // select id from context;
+
+$select->where()->equal(array("id" => 0)); // select id from context where (id=0);
+
+
+$select->where()->isNull(array("id"));       
+
+$select->clear();
+
+$select->from("context");
+$sql = $select->getSql();
+
+echo $sql;
+
+$data = $select->exec();
+print_r($data);
+
+
 
 /***********************************************************************************************
  "$select->where()"" return a instance of class "EndSql_Sql_Where".
@@ -58,32 +86,8 @@ class "EndSql_Updata" containing method :
 
 ***********************************************************************/
 
-SELECT EXAMPLE :
-
-<?php
-  include '../Autoload.php';
-
-  $db = EndSql::getInstance();
-
-  $select = $db->select();
-
-  $select->from("context"); 
-
-  $data = $select->exec(); //execute : select * from context
-
-  $data = $select->columns(array("id","caption"));  // select id from context;
-
-  $select->where()->equal(array("id" => 0)); // select id from context where (id=0);
 
 
-  $select->where()->isNull(array("id"));       
 
-  $select->clear();
 
-  $select->from("context");
-  $sql = $select->getSql();
 
-  echo $sql;
-
-  $data = $select->exec();
-  print_r($data);
