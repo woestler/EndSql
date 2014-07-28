@@ -277,3 +277,12 @@ Please note that function returns SQL query only for debugging purposes as its e
     $select->getSql();
     // return : SELECT * FROM user;
 ```
+Error handing
+
+```php
+  $data = $select->from("user")->exec();
+  if(!$data) {
+      $select->getLastError();
+  }
+```
+

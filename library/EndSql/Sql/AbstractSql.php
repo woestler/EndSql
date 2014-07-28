@@ -69,6 +69,11 @@ abstract class EndSql_Sql_AbstractSql {
         return $resultSet;
     }
 
+    public function getLastError() {
+        $error = $this->pdo->errorInfo();
+        return $error;
+    }
+
     public abstract function getSql();
 
     public abstract function clear();
