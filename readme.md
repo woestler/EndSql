@@ -282,7 +282,7 @@ Error handing
 ```php
   $data = $select->from("user")->exec();
   if(!$data) {
-      $select->getLastError();
+      print_r($select->getLastError());
   }
 ```
 
