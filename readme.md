@@ -17,7 +17,7 @@ EndSql
 
 ### Initialization
 To utilize this class, first import Autoload.php into your project, and require it. 
-You may need to edit the user name and password of your database server.
+You may need to edit the username and password of your database server in local.php.
 And you need to enable the pdo extension for your php. 
 
 ```php
@@ -29,7 +29,7 @@ After that, create a new instance of the class.
 ```php
 $db = EndSql::getInstance();
 ```
-Next, get a new instance of query method you want by call the necessary methods. 
+Next, get a new instance of query method which you want by call the relevant methods. 
 
 ### Insert Query
 Simple example
