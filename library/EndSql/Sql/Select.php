@@ -133,11 +133,6 @@ class EndSql_Sql_Select extends EndSql_Sql_AbstractSql {
      */
     protected $combine = array();
 
-    /**
-     * @var array|null
-     */
-    protected $alias = null;
-
      /**
      * @var string|array|null
      */
@@ -245,10 +240,6 @@ class EndSql_Sql_Select extends EndSql_Sql_AbstractSql {
         $this->columns = $columns;
         $this->prefixColumnsWithTable = (bool) $prefixColumnsWithTable;
         return $this;
-    }
-
-    public function alias(array $alias) {
-        $this->alias = $alias;
     }
 
     public function distinct($distinct) {
@@ -363,7 +354,6 @@ class EndSql_Sql_Select extends EndSql_Sql_AbstractSql {
         $this->distinct = null;
         $this->combine = null;
         $this->offset = null;
-        $this->alias = null;
         return $this;
     }
 }

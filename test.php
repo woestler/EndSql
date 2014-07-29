@@ -14,11 +14,11 @@ $select = $db->select();
 $insert = $db->insert();
 
 $data = array(NULL,'TEST_Y');
-// $select->columns(array("count(*)","type"));
+// $select->from("type");
+// $select->group("type");
 // $select->group("type");
 
 
- // echo $subselect->getSql(); echo "\n";
 $select->from("context");
 $subselect = $db->select("tumblr")->columns(array("type_id"));
 $subselect->where()->equal(array('type_id' => 333 ));
@@ -31,7 +31,6 @@ echo $select->getSql();
 //SELECT * FROM context WHERE ( type_id = (SELECT type_id FROM tumblr WHERE ( type_id = 333) LIMIT 1)) ORDER BY id DESC,caption DESC LIMIT 2
 
 print_r($select->exec());
-print_r($select->getLastError());
 // Gives: SELECT * FROM users LIMIT 1;
 
 // echo $select->getSql();
