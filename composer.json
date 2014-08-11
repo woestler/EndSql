@@ -1,0 +1,16 @@
+{
+  "require":
+  {
+    "phpclasses/endsql": ">=1.0.2"
+  },
+  "repositories":
+  [
+    {
+      "type": "composer",
+      "url": "http:\/\/www.phpclasses.org\/"
+    },
+    {
+      "packagist": false
+    }
+  ]
+}
