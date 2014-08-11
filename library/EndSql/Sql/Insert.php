@@ -44,75 +44,76 @@ class EndSql_Sql_Insert extends EndSql_Sql_AbstractSql {
 
 	protected $values;
 
-	protected $columns;
+	protected $columns = array();
 
 	public function into($table) {
 		$this->table = $table;
 		return $this;
 	}
+    
+	public function columns(array $columns) {
+         $this->columns = $columns;
+         return $this;
+    }
 
-
-	public function values(array $values) {
-
+    public function values(array $values) {
+        $this->values = '(';
         foreach ($values as $key => $value) {
-            if(is_numeric($key)) {
-                $this->values[] = $value;
-            } elseif(is_string($key)) {
-                $this->columns[] = $key;
-                $this->values[]  = $value;
+            if(!is_array($value)) {
+                $type = 1;
+                if(is_string($key)) {
+                    $this->columns[] = $key;
+                }
+                $this->values .= '"'.$value.'",';
+            } else {
+                $type = 2;
+                foreach($value as $subkey => $subvalue) {
+                    if(is_string($subkey)) {
+                        $this->columns[] = $subkey;
+                    }
+                    $this->values .= '"'.$subvalue.'",';
+                }
+                $this->values = substr($this->values,0,-1).'),(';
             }
+        }
+        $this->values = substr($this->values,0,-1);
+        if($type == 1) {
+            $this->values .= ')';
+        } else {
+            $this->values = substr($this->values,0,-1);
         }
         return $this;
-	}
+    }
 
-	public function exec() {
-		$this->sql = $this->getSql();
-		if(!$this->pdo)
-			throw new Exception("pdo error", 1);
-		$stmt = $this->pdo->prepare($this->sql);
-        if(is_array($this->values)) {
-            list($a) = $this->values;
-            if(is_array($a)) {
-            	foreach ($this->values as $key => $value) {
-            		if(!$stmt->execute($value))
-            			throw new Exception($this->pdo->errorCode());
-            	}
-            } else {
-            	if(!$stmt->execute($this->values))
-            		throw new Exception($this->pdo->errorCode());     		
-            }
-        }
-    }	
-	
-
-	public function getSql() {
+    public function getSql() {
+        
         $sql = "INSERT INTO $this->table ";
         if($this->columns) {
-        	if(is_array($this->columns)) {
-        		$columnsStr = '(';
-        		foreach ($this->columns as $value) {
-        			$columnsStr .= $value.','; 
-        		}
-        		$columnsStr = substr($columnsStr, 0, -1).') ';
-                $sql .= $columnsStr;
-        	}
-        }
-        if(is_array($this->values)) {
-        	list($a) = $this->values;
-        	if(is_array($a)) {
-        		$count = count($a);
-        	} else {
-                $count = count($this->values);
+            $this->columns = array_unique($this->columns); 
+            $sql .= '(';
+            foreach ($this->columns as $value) {
+                $sql .= $value.',';
             }
-            $sql .= 'VALUES (';
-            for($i=0;$i<$count;$i++) {
-                 $sql .= '?,';
-            }
-            $sql = substr($sql, 0, -1).')';
+            $sql = substr($sql, 0, -1).') ';
         }
-        return $sql;
-	}
 
+        $sql .= 'VALUES '.$this->values;
+        return $sql;
+    }
+
+    public function exec() {
+        $this->sql = $this->getSql();
+
+        $result = $this->pdo->exec($this->sql);
+
+        if(!$result) {
+            $error = $this->pdo->errorInfo();
+            throw new Exception($error[2], 1);    
+        } else {
+            return $result;
+        }
+    }  
+    
     public function clear() {
         $this->table = null;
         $this->values = null;
@@ -121,5 +122,3 @@ class EndSql_Sql_Insert extends EndSql_Sql_AbstractSql {
         return $this;
     }
 } 
-
-// insert into type 

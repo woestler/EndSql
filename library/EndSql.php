@@ -72,8 +72,7 @@ class EndSql {
 		if(self::$pdoInstance) {
 			return self::$pdoInstance;
 		}
-		// $file = str_replace(__DIR__, re, subject)
-		$config = require(__DIR__."\..\local.php");
+		$config = require(__DIR__.DIRECTORY_SEPARATOR."..".DIRECTORY_SEPARATOR."local.php");
 		self::$pdoInstance = new PDO($config["dsn"],$config['user'],$config['password']);
 		return self::$pdoInstance;
 	}
@@ -85,10 +84,6 @@ class EndSql {
             self::$pdoInstance = self::pdoInstance();
             return self::$pdoInstance;
 	    }
-	}
-
-	public function test() {
-		print_r(self::$pdoInstance);
 	}
 
 	public function insert($tableName = NULL) {
@@ -112,6 +107,10 @@ class EndSql {
         if(!$resultSet)
             return false;
         return $resultSet;
+	}
+
+	public function getLastError() {
+		return self::$pdoInstance->errorInfo();
 	}
 }
 

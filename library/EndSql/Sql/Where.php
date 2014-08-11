@@ -270,7 +270,10 @@ class EndSql_Sql_Where {
 			if(is_object($value)) {
 				$sql .= ' '.$key.' ='.$this->subSelect($value).' '.$op2;
 			} else {
-			    $sql .= ' '.$key.' = '.$value.' '.$op2;
+				if(is_string($value))
+			       $sql .= ' '.$key.' = "'.$value.'" '.$op2;
+			    else 
+			       $sql .= ' '.$key.' = '.$value.' '.$op2;
 		    }
 		}
 		$offset = 0-(strlen($op2)+1);
@@ -293,6 +296,7 @@ class EndSql_Sql_Where {
 
 	public function clear() {
 		$this->sql ='';
-	}	
+	}
+
 }
 
