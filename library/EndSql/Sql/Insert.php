@@ -33,7 +33,7 @@
  * POSSIBILITY OF SUCH DAMAGE.
  *
  * @package EndSQL
- * @version 1.0.0
+ * @version 1.0.2
  * @copyright 2013-2014 Woestler
  * @author Woestler
  * @link http://EndSQL.com/ EndSQL
@@ -62,7 +62,8 @@ class EndSql_Sql_Insert extends EndSql_Sql_AbstractSql {
             if(!is_array($value)) {
                 $type = 1;
                 if(is_string($key)) {
-                    $this->columns[] = $key;
+                    if(!in_array($key, $this->columns))
+                       $this->columns[] = $key;
                 }
                 $this->values .= '"'.$value.'",';
             } else {

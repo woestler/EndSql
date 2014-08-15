@@ -44,6 +44,7 @@ if($count)
     echo $count.' user was created.';
 
 $insert->clear();
+$insert->into("user");
 $data = array("admin","John","Doe");
 $insert->values($data)->exec();
 ```
@@ -53,7 +54,13 @@ Insert mutiple lines
 $data = array(array("admin","Woestler","Dom"),array("admin","Forsan","Co"));
 $insert->values($data)->exec();
 ```
-
+Or you can insert mutiple lines like this
+```php
+$data = array(array("firstName"=>"woestler","lastName"=>"Dom"),
+              array("firstName"=>"forsan","lastName"=>"Co"));
+$insert->values($data)->exec();
+ // Gives: INSERT INTO `user` ("firstName","lastName") VALUES ("Woestelr","Dom"),("Forsan","Co");
+ ```
 ### Update Query
 ```php
 $data = array("username" => "Woestler");

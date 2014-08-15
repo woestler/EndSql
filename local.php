@@ -33,7 +33,7 @@
  * POSSIBILITY OF SUCH DAMAGE.
  *
  * @package EndSQL
- * @version 1.0.0
+ * @version 1.0.2
  * @copyright 2013-2014 Woestler
  * @author Woestler
  * @link http://EndSQL.com/ EndSQL
